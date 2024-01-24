@@ -3,6 +3,8 @@ import {ref} from "vue";
 
 const isLoading = ref(false)
 
+axios.defaults.baseURL = 'http://localhost:3000';
+
 axios.interceptors.request.use(function (config) {
   isLoading.value = true
   return config;
@@ -15,7 +17,7 @@ axios.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
   isLoading.value = false
-  alert('Handled error from API...')
+  alert('Start local API First :)')
   return Promise.reject(error);
 });
 

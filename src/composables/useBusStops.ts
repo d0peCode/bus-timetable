@@ -9,16 +9,16 @@ interface BusStop {
 
 export const useBusStops = () => {
   const fetchAllBusStops = async () => {
-    const { data: busStops } = await axios.get<BusStop[]>(`http://localhost:3000/stops`)
+    const { data: busStops } = await axios.get<BusStop[]>(`/stops`)
     return busStops
   }
 
   const fetchBusStops = async (line: number) => {
-    const { data: busStops } = await axios.get<BusStop[]>(`http://localhost:3000/stops?line=${line}`)
+    const { data: busStops } = await axios.get<BusStop[]>(`/stops?line=${line}`)
     return busStops
   }
   const fetchBusStopsTime = async (stopName: string) => {
-    const { data: busStops } = await axios.get<BusStop[]>(`http://localhost:3000/stops?stop=${stopName}`)
+    const { data: busStops } = await axios.get<BusStop[]>(`/stops?stop=${stopName}`)
 
     const dates = busStops.map((busStop) => ( busStop.time ))
 
