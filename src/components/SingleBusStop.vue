@@ -3,6 +3,7 @@ import {defineProps, watch, ref} from 'vue'
 import {useBusStops} from "@/composables/useBusStops";
 
 const props = defineProps<{
+  selectedLine: number
   selectedStopName: string
 }>()
 
@@ -15,7 +16,9 @@ watch(() => props.selectedStopName, async (newStopName: string) => {
 </script>
 <template>
   <div class="single-stop" :class="busTimeList.length ? 'single-stop--filled' : 'single-stop--empty'">
-    <p v-if="!busTimeList.length">Please select the bus line first</p>
+    <p v-if="!busTimeList.length">
+      Please select the bus {{ selectedLine ? 'stop' : 'line' }} first
+    </p>
     <table aria-describedby="Bus Stops Table" v-else class="single-stop__table">
       <tr>
         <th scope="row">Bus Stop: {{ selectedStopName }}</th>

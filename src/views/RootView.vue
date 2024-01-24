@@ -20,7 +20,7 @@ function newStopSelected (newStopName: string) {
   <BusLineSelector @line-selected="newLineSelected" />
   <main class="bus-container">
     <SingleBusLine :selected-line="selectedLine" @stop-selected="newStopSelected" />
-    <SingleBusStop :selected-stop-name="selectedStopName" />
+    <SingleBusStop :selected-line="selectedLine" :selected-stop-name="selectedStopName" />
   </main>
 </template>
 <style lang="scss">

@@ -26,7 +26,9 @@ watch(() => props.selectedLine, async (newLine: number) => {
 </script>
 <template>
   <div class="single-line" :class="busStopsList.length ? 'single-line--filled' : 'single-line--empty'">
-    <p class="dev-info">(Sorry but no time to make border pixel perfect with Figma design)</p>
+    <p class="dev-info" v-if="!busStopsList.length">
+      (Sorry but no time to make border pixel perfect with Figma design)
+    </p>
     <p v-if="!busStopsList.length">Please select the bus line first</p>
     <table aria-describedby="Bus Stops Table" v-else class="single-line__table">
       <tr>
