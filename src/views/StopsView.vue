@@ -1,6 +1,6 @@
 <script setup lang="ts">
-
+import BusStopSearch from "@/components/BusStopSearch.vue";
 </script>
 <template>
-  <h1>stops view</h1>
+  <BusStopSearch />
 </template>

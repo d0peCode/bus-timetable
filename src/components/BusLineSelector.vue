@@ -4,10 +4,16 @@ import {onMounted, ref, defineEmits} from "vue";
 
 const { fetchBusLines } = useBusLines()
 const busLines = ref<number[]>([])
+const selectedLine = ref<number>(0)
 
 const emit = defineEmits<{
   (e: 'line-selected', newLine: number): void
 }>()
+
+function newLineSelected (newLine: number) {
+  selectedLine.value = newLine
+  emit('line-selected', selectedLine.value)
+}
 
 onMounted(async () => {
   busLines.value = await fetchBusLines()
@@ -19,9 +25,10 @@ onMounted(async () => {
     <div class="bus-lines__lines-box">
       <div
           class="bus-lines__line-chip"
+          :class="{ 'bus-lines__line-chip--active': selectedLine === line }"
           v-for="(line, index) in busLines"
           :key="index"
-          @click="emit('line-selected', line)"
+          @click="newLineSelected(line)"
       >
         {{ line }}
       </div>
@@ -63,6 +70,14 @@ onMounted(async () => {
     &:hover {
       background-color: #1649CA;
       cursor: pointer;
+    }
+
+    &--active {
+      background-color: #2E3E6E;
+
+      &:hover {
+        background-color: #2E3E6E;
+      }
     }
   }
 }
